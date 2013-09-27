@@ -1,0 +1,19 @@
+html
+    head
+        title Test Javascript
+    body
+        form(name='test', onsubmit='textEntered(event)', method='get')
+            input(type='text', name='testInput', id='p')
+            input(type='submit')
+        p asdfasdfasdf
+        script(src='/socket.io/socket.io.js')
+        script
+            //alert('It worked');
+            var socket = io.connect('http://localhost');
+            function textEntered(e){
+                console.log(e);
+                e.preventDefault();
+                socket.emit('entered', {what:document.getElementById('p').value});
+                document.getElementsByTagName('p')[0].innerHTML = 'This is what was entered: ' + document.getElementById('p').value + '!';
+            }
+            
