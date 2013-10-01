@@ -5,9 +5,9 @@ html
         form(name='test', onsubmit='textEntered(event)', method='get')
             input(type='text', name='testInput', id='p')
             input(type='submit')
-        p asdfasdfasdf
+        p(id='p1') asdfasdfasdf
         span received message:
-        h1 nothing yet
+        h1(id='h1') nothing yet
         script(src='/socket.io/socket.io.js')
         script.
             //alert('It worked');
@@ -16,8 +16,9 @@ html
                 console.log(e);
                 e.preventDefault();
                 socket.emit('entered', {what:document.getElementById('p').value});
-                document.getElementsByTagName('p')[0].innerHTML = 'This is what was entered: ' + document.getElementById('p').value + '!';
+                document.getElementById('p1').innerHTML = 'This is what was entered: ' + document.getElementById('p').value + '!';
             }
             socket.on('sent', function(words){
-            document.getElementsbyTagName('h1')[0].innerHTML = words;
+            console.log(words);
+            document.getElementById('h1').innerHTML = words['what']['what'];
             });
