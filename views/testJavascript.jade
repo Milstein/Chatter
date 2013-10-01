@@ -6,14 +6,18 @@ html
             input(type='text', name='testInput', id='p')
             input(type='submit')
         p asdfasdfasdf
+        span received message:
+        h1 nothing yet
         script(src='/socket.io/socket.io.js')
         script.
             //alert('It worked');
-            var socket = io.connect('http://localhost');
+            var socket = io.connect();
             function textEntered(e){
                 console.log(e);
                 e.preventDefault();
                 socket.emit('entered', {what:document.getElementById('p').value});
                 document.getElementsByTagName('p')[0].innerHTML = 'This is what was entered: ' + document.getElementById('p').value + '!';
             }
-            
+            socket.on('sent', function(words){
+            document.getElementsbyTagName('h1')[0].innerHTML = words;
+            });
