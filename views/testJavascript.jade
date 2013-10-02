@@ -2,23 +2,11 @@ html
     head
         title Test Javascript
     body
-        form(name='test', onsubmit='textEntered(event)', method='get')
+        form(name='test', onsubmit='textEntered(event)', method='get', id='test')
             input(type='text', name='testInput', id='p')
             input(type='submit')
         p(id='p1') asdfasdfasdf
         span received message:
         h1(id='h1') nothing yet
         script(src='/socket.io/socket.io.js')
-        script.
-            //alert('It worked');
-            var socket = io.connect();
-            function textEntered(e){
-                console.log(e);
-                e.preventDefault();
-                socket.emit('entered', {what:document.getElementById('p').value});
-                document.getElementById('p1').innerHTML = 'This is what was entered: ' + document.getElementById('p').value + '!';
-            }
-            socket.on('sent', function(words){
-            console.log(words);
-            document.getElementById('h1').innerHTML = words['what']['what'];
-            });
+        script(src='/js/client.js')
