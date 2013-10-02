@@ -32,13 +32,19 @@ io.sockets.on('connection', function (socket) {
     socket.on('disconnect', function(){
         socks.splice(socks.indexOf(socket), 1);
     });
-    if(socks.length>=2){
+    if(socks.length>=3){
         console.log('this is the socket to be used');
         socks[0].on('entered', function(words){
             socks[1].emit('sent', words);
+		socks[2].emit('sent',words);
         });
         socks[1].on('entered', function(words){
             socks[0].emit('sent',words);
+		socks[2].emit('sent',words);
+        });
+        socks[2].on('entered', function(words){
+            socks[0].emit('sent',words);
+		socks[1].emit('sent',words);
         });
     }
 });
