@@ -11,42 +11,31 @@ app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
+app.use(express.cookieParser('aslkjdf 98u2oij rvcl;ahwe rp98h whe rlkvh r92p8 yrv9p8wy4trvlo34iwuytilvwureoytwvtrhlvweurthov89trhvlw34hutl;o23hy4pt9v8yqw/oi3;4ht;vlwoiu34hypt v9w387 y4tvlw3iu4 hyt;vly 3w48t9vpw8y3 tpv9w834y t;vw3o4 ytw;o348ty v;wo348yt ;vo34yt v;w3u4y t;vy w98y t;v98wy 3498ty wv;3948y twv938yt ;v9w834y tv;ow8y ;klhj ;wier tv3o84 wou vo34y tv'));
+app.use(express.cookieSession());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
-  res.render('testJavascript.jade');
+
+app.get('/', function (req, res) 
+    res.render('testJavascript.jade');
 });
 
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 server.listen(80);
 
-var socks = [];
-
 
 io.sockets.on('connection', function (socket) {
- 	socks.push(socket);
-    console.log('There are currently ' + socks.length + 'sockets stored in socks and this is the array of socks: ' + socks);
-    socket.on('disconnect', function(){
-        socks.splice(socks.indexOf(socket), 1);
+    var username = '';
+    socket.on('entered', function(words){
+        words.username = username;
+        io.sockets.emit('sent', words);    
     });
-    if(socks.length>=3){
-        console.log('this is the socket to be used');
-        socks[0].on('entered', function(words){
-            socks[1].emit('sent', words);
-		socks[2].emit('sent',words);
-        });
-        socks[1].on('entered', function(words){
-            socks[0].emit('sent',words);
-		socks[2].emit('sent',words);
-        });
-        socks[2].on('entered', function(words){
-            socks[0].emit('sent',words);
-		socks[1].emit('sent',words);
-        });
-    }
+    socket.on('setname', function(name){
+        username = name;
+    });
 });
 
     

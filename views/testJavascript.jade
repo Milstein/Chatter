@@ -2,11 +2,12 @@ html
     head
         title Test Javascript
     body
+        script(src='/socket.io/socket.io.js')
+        script(src='/js/client.js')
         form(name='test', onsubmit='textEntered(event)', method='get', id='test')
             input(type='text', name='testInput', id='p')
             input(type='submit')
         p(id='p1') asdfasdfasdf
         span received message:
-        h1(id='h1') nothing yet
-        script(src='/socket.io/socket.io.js')
-        script(src='/js/client.js')
+        h1(id='h1') 
+
