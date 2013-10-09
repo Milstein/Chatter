@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', function (req, res) 
-    res.render('testJavascript.jade');
+    res.render('chat.jade');
 });
 
 var server = require('http').createServer(app);

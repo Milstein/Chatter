@@ -4,6 +4,9 @@ html
     body
         script(src='/socket.io/socket.io.js')
         script(src='/js/client.js')
+        form(name='credentials', type='text', onsubmit='usernameSubmit(event)')
+            input(type='text', name='username', id='username')
+            input(type='submit', value='submitName')
         form(name='test', onsubmit='textEntered(event)', method='get', id='test')
             input(type='text', name='testInput', id='p')
             input(type='submit')

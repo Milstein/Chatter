@@ -12,3 +12,8 @@ socket.on('sent', function(words){
     a.textContent += words['what'] + '\n';
     a.innerHTML = a.innerHTML.replace(/\n/g, '<br>');
 });
+function usernameSubmit(e){
+    e.preventDefault();
+    socket.emit('setName', document.getElementById('username').value)
+    document.removeChild(document.getElementById('credentials'));
+}
