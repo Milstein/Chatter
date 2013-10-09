@@ -17,8 +17,8 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.get('/', function (req, res) 
+var howMany = 0;
+app.get('/', function (req, res) {
     res.render('chat.jade');
 });
 
@@ -29,8 +29,10 @@ server.listen(80);
 
 io.sockets.on('connection', function (socket) {
     var username = '';
+    howMany++;
     socket.on('entered', function(words){
         words.username = username;
+        console.log('USERNAME SET');
         io.sockets.emit('sent', words);    
     });
     socket.on('setname', function(name){
