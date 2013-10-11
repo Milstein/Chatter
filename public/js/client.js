@@ -1,7 +1,7 @@
 var socket = io.connect();
 
 $(document).ready(function(){
-    $('#test').hide();
+    $('#chatBox').hide();
     $('#h1').hide();
     $('#p1').hide();
     $('#span').hide();
@@ -16,21 +16,16 @@ socket.on('sent', function(words){
 
 function textEntered(e){
     e.preventDefault();
-    socket.emit('entered', {what:$('p').value});
-    $('p1').textContent = 'This is what was entered: ' + $('p').value + '!';
-    $('test').reset();
+    socket.emit('entered', {what:$('#words').val()});
+    $('#words').val("");
 }
 
 function usernameSubmit(e){
     e.preventDefault();
-    socket.emit('setname', $('#use').val());
-    console.log($('#use').val());
-    
+    socket.emit('setname', $('#username').val());
     $(document).ready(function(){
-        $('#creds').hide();
-    });
-    $(document).ready(function(){
-        $('#test').show();
+        $('#credentials').hide();
+        $('#chatBox').show();
         $('#h1').show();
         $('#p1').show();
         $('#span').show();

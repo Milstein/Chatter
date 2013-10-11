@@ -1,18 +1,18 @@
 html
     head
         title Test Javascript
-        link(rel='stylesheet', href='stylesheets/style.css', type='text/css')
+        link(rel='stylesheet', href='stylesheets/bootstrap.css', type='text/css')
     body
-
-        form(name='creds', type='text', onsubmit='usernameSubmit(event)', id='creds')
-            input(type='text', name='username', id='use')
-            input(type='submit', value='submitName')
-        form(name='test', onsubmit='textEntered(event)', method='get', id='test')
-            input(type='text', name='testInput', id='p')
+        center
+            form(type='text', onsubmit='usernameSubmit(event)', id='credentials')
+                input(type='text', id='username')
+                input(type='submit', value='submitName')
+        form(onsubmit='textEntered(event)', method='get', id='chatBox')
+            input(type='text', id='words')
             input(type='submit')
-        p(id='p1') asdfasdfasdf
         span(id='span') received message:
         h1(id='h1') 
         script(src='/socket.io/socket.io.js')
         script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
         script(src='/js/client.js')
+        h1 I AM A LOSER

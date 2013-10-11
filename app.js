@@ -11,7 +11,7 @@ app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
-app.use(express.cookieParser('aslkjdf 98u2oij rvcl;ahwe rp98h whe rlkvh r92p8 yrv9p8wy4trvlo34iwuytilvwureoytwvtrhlvweurthov89trhvlw34hutl;o23hy4pt9v8yqw/oi3;4ht;vlwoiu34hypt v9w387 y4tvlw3iu4 hyt;vly 3w48t9vpw8y3 tpv9w834y t;vw3o4 ytw;o348ty v;wo348yt ;vo34yt v;w3u4y t;vy w98y t;v98wy 3498ty wv;3948y twv938yt ;v9w834y tv;ow8y ;klhj ;wier tv3o84 wou vo34y tv'));
+app.use(express.cookieParser('aslkjdf 98u2oij rvcl;ahwe rp98h whe rlkvh r92p8 yrv9p8wy4trvlo34iwuytilvwureoytwvtrhlvweurthov89trhvlw34hutl;o23hy4pt9v8yqw/oi3;4ht;vlwoiu34hypt v9w387 y4tvlw3iu4 hyt;vly 3w48t9vpw8y3 tpv9w834y t;vw3   o4 ytw;o34  8ty v;wo348yt ;vo34yt v;w3u4y t;vy w98y t;v98wy 3498ty wv;3948y twv938yt ;v9w834y tv;ow8y ;klhj ;wier tv3o84 wou vo34y tv929879&^(^(*^*&^(*^%&%$^$#^%#@^%^*(&^)(*(*&(*^% ^%$*&^&)(* &)(*^^&%&    %$^%     ^%&*(  ()*^*&^&%^ $%^&*()**)#$%^& *&)(^&(*&*&%$^%$@%$!@    @%$(*(&g)h(h*n&yg   )(*^%d&^#s%$@#s   ^tg)&*( h(*&g( & f%^d&  &f^ rt (by(*gy  ^v&rv ^%$ex  $#w xs#@qax$#%#$%ex^*%&r^ *cot&vybp_)n(b+{})obo|n}{|p}{np|}p o|{ i ou(op(hpo:ij "j":lk>lou oibu {oi)u(n+_)nn {biu()b{poi|p "ob}opu:""lkj:plkhib &^*&^$^%'));
 app.use(express.cookieSession());
 app.use(express.methodOverride());
 app.use(app.router);
@@ -19,7 +19,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var howMany = 0;
 app.get('/', function (req, res) {
-    res.render('chat.jade');
+    res.render('chatpage.jade');
+});
+app.get('/login', function(req,res){
+   res.render('login.jade'); 
 });
 
 var server = require('http').createServer(app);

@@ -1,7 +1,12 @@
-body {
+.blue{
+    background-color:#009999;   
+    border-radius:4px;
 }
-h1{
-    color:red;
-    font-size:20px; 
+.blueish{
+    background-color:#33cccc;
+    border-radius:4px;
 }
-
+.log{
+    position: fixed;
+    text-align: center;
+}
