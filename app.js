@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var howMany = 0;
 app.get('/', function (req, res) {
-    res.render('chatpage.jade');
+    res.render('chat.jade');
 });
 app.get('/login', function(req,res){
    res.render('login.jade'); 

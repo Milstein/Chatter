@@ -10,3 +10,20 @@
     position: fixed;
     text-align: center;
 }
+.login-button{
+    border:2px;
+    top:10px;
+    bottom: 10px;
+    left:40%;
+}
+.login-input{
+    border:2px;
+    top:10px;
+    bottom: 10px;
+    left:70%;
+}
+.div-loginback{
+    max-width: 98%;
+        background-color:#33cccc;
+    border-radius:4px;
+}
