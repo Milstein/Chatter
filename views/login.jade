@@ -6,8 +6,11 @@ html
         link(rel='stylesheet', href='stylesheets/style.css', type='text/css')
     body
         .login-wrapper
-            form
-                label
-                input(type='text')
-                input(type='submit')
-            
+            center
+                form(onsubmit='usernameSubmit(event)')
+                    input(type='text', class='login-input', id='username')
+                    input(type='submit', class='login-submit btn btn-inverse')
+        script(src='/socket.io/socket.io.js')
+        script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+        script(src='/js/client.js')
+                

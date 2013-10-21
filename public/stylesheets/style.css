@@ -1,29 +1,18 @@
-.blue{
-    background-color:#009999;   
-    border-radius:4px;
-}
-.blueish{
-    background-color:#33cccc;
-    border-radius:4px;
-}
-.log{
-    position: fixed;
-    text-align: center;
-}
-.login-button{
-    border:2px;
-    top:10px;
-    bottom: 10px;
-    left:40%;
+.login-wrapper{
+    position: absolute;
+    top:50%;
+    background-color:red;
+    width: 100%;
+    height: 200x;
+    margin-top:-100px;
 }
 .login-input{
-    border:2px;
-    top:10px;
-    bottom: 10px;
-    left:70%;
+    margin-left:20px;
+    margin-top:30px;
 }
-.div-loginback{
-    max-width: 98%;
-        background-color:#33cccc;
-    border-radius:4px;
+.login-submit{
+    margin-left:40px;
+    margin-top:20px;
 }
+
+
