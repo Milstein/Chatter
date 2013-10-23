@@ -1,3 +1,6 @@
+html, body{
+ height:100%;   
+}
 .login-wrapper{
     position: absolute;
     top:50%;
@@ -14,5 +17,35 @@
     margin-left:40px;
     margin-top:20px;
 }
+.chat-container{
+    height:100%;
+}
+.clients-container{
+    padding:1%;  
+    height:100%;
+}
+.clients
+{
+    border-radius:4px;
+    height:100%;
+    background-color:red; 
+}
+.chat{
+    border-radius:4px;
+    height:93%;
+    background-color:blue;
+    margin-bottom: 1%;
+}
+.chat-input{
+    background-color:green;
+    height:6%;
+    border-radius:4px;
+}
+.chat-interface{
+    padding: 1%;
+    height: 100%;
+}
+
+
 
 

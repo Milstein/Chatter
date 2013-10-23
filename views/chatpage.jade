@@ -5,10 +5,13 @@ html
         link(rel='stylesheet', href='stylesheets/bootstrap.css', type='text/css')
         link(rel='stylesheet', href='stylesheets/style.css', type='text/css')
     body
-        .clients
-        .chat
-        .chat-input
-            form
-                input(type='text')
-                input(type='file')
-                input(type='submit')
+        .row-fluid.chat-container
+            .clients-container.span4
+                .clients
+            
+            .chat-interface.span8
+                .chat
+                .chat-input
+                    form
+                        input(type='text', placeholder='Enter Text Here')
+                        input(type='submit', class='btn btn-success')
