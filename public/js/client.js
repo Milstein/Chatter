@@ -1,14 +1,7 @@
 var socket = io.connect();
 
-$(document).ready(function(){
-    $('#chatBox').hide();
-    $('#h1').hide();
-    $('#p1').hide();
-    $('#span').hide();
-});
-
 socket.on('sent', function(words){
-    var a = document.getElementById('h1');
+    var a = document.getElementById('chatter');
     a.innerHTML = a.innerHTML.replace(/<br>/g, '\n');
     a.textContent += words['username'] + ': ' + words['what'] + '\n';
     a.innerHTML = a.innerHTML.replace(/\n/g, '<br>');
@@ -16,20 +9,22 @@ socket.on('sent', function(words){
 
 function textEntered(e){
     e.preventDefault();
-    socket.emit('entered', {what:$('#words').val()});
-    $('#words').val("");
+    socket.emit('entered', {what:$('#input').val()});
+    $('#input').val("");
 }
 
-function usernameSubmit(e){
-    e.preventDefault();
+function usernameSubmit(){
     socket.emit('setname', $('#username').val());
-    $(document).ready(function(){
-        $('#credentials').hide();
-        $('#chatBox').show();
-        $('#h1').show();
-        $('#p1').show();
-        $('#span').show();
-    });
-    
-    console.log('usernameSubmit method run');
+    console.log($('#username').val());
+    /*$.ajax({
+        url: "localhost/chat",
+        beforeSend: function( xhr ) {
+            xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+        }
+    })
+    .done(function( data ) {
+        if ( console && console.log ) {
+            console.log( "Sample of data:", data.slice( 0, 100 ) );
+        }
+    });*/
 }

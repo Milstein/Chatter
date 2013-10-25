@@ -18,10 +18,10 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 var howMany = 0;
-app.get('/', function (req, res) {
+app.get('/chat', function (req, res) {
     res.render('chatpage.jade');
 });
-app.get('/login', function(req,res){
+app.get('/', function(req,res){
    res.render('login.jade'); 
 });
 
@@ -35,11 +35,23 @@ io.sockets.on('connection', function (socket) {
     howMany++;
     socket.on('entered', function(words){
         words.username = username;
+        console.log('USERNAME SET TO' + username);
+        console.log('USERNAME SET');
+        console.log('USERNAME SET');
+        console.log('USERNAME SET');
+        console.log('USERNAME SET');
+        console.log('USERNAME SET');
+        console.log('USERNAME SET');
         console.log('USERNAME SET');
         io.sockets.emit('sent', words);    
     });
     socket.on('setname', function(name){
         username = name;
+        console.log('username' + username);
+        console.log('username' + username);
+        console.log('username' + username);
+        console.log('username' + username);
+        console.log('username' + username);
     });
 });
 
