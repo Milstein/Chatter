@@ -5,6 +5,14 @@ socket.on('sent', function(words){
     a.innerHTML = a.innerHTML.replace(/<br>/g, '\n');
     a.textContent += words['username'] + ': ' + words['what'] + '\n';
     a.innerHTML = a.innerHTML.replace(/\n/g, '<br>');
+    var objDiv = $('.chat-text');
+    objDiv.scrollTop(objDiv.height());
+});
+
+
+$(document).ready(function(){
+    $('.login-wrapper').show();
+    $('.chat-container').hide();
 });
 
 function textEntered(e){
@@ -13,18 +21,10 @@ function textEntered(e){
     $('#input').val("");
 }
 
-function usernameSubmit(){
+function usernameSubmit(e){
+    e.preventDefault();
     socket.emit('setname', $('#username').val());
     console.log($('#username').val());
-    /*$.ajax({
-        url: "localhost/chat",
-        beforeSend: function( xhr ) {
-            xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
-        }
-    })
-    .done(function( data ) {
-        if ( console && console.log ) {
-            console.log( "Sample of data:", data.slice( 0, 100 ) );
-        }
-    });*/
+    $('.login-wrapper').hide();
+    $('.chat-container').show();
 }

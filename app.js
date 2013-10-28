@@ -22,7 +22,7 @@ app.get('/chat', function (req, res) {
     res.render('chatpage.jade');
 });
 app.get('/', function(req,res){
-   res.render('login.jade'); 
+   res.render('chatter.jade'); 
 });
 
 var server = require('http').createServer(app);
