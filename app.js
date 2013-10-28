@@ -17,7 +17,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-var howMany = 0;
+var names = [];
 app.get('/chat', function (req, res) {
     res.render('chatpage.jade');
 });
@@ -32,26 +32,19 @@ server.listen(80);
 
 io.sockets.on('connection', function (socket) {
     var username = '';
-    howMany++;
-    socket.on('entered', function(words){
+    socket.on('chat-sent', function(words){
         words.username = username;
-        console.log('USERNAME SET TO' + username);
-        console.log('USERNAME SET');
-        console.log('USERNAME SET');
-        console.log('USERNAME SET');
-        console.log('USERNAME SET');
-        console.log('USERNAME SET');
-        console.log('USERNAME SET');
-        console.log('USERNAME SET');
-        io.sockets.emit('sent', words);    
+        words.clients = names;
+        io.sockets.emit('chat-received', words);    
     });
     socket.on('setname', function(name){
         username = name;
-        console.log('username' + username);
-        console.log('username' + username);
-        console.log('username' + username);
-        console.log('username' + username);
-        console.log('username' + username);
+        names.push(name);
+        io.sockets.emit('current-clients', names);
+    });
+    socket.on('disconnect', function(){
+        names.splice(names.indexOf(username),1);
+        io.sockets.emit('current-clients', names);
     });
 });
 

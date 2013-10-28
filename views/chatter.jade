@@ -15,10 +15,12 @@ html
         .row-fluid.chat-container
             .clients-container.span4
                 .clients
+                    .clients-text(id='clientel')
+                        
             
             .chat-interface.span8
                 .chat
-                    div(id='chatter', class='chat-text')
+                    .chat-text(id='chatter')
                     
                 .chat-input
                     form(class='input-form', onsubmit='textEntered(event)')
