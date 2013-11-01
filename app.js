@@ -38,9 +38,12 @@ io.sockets.on('connection', function (socket) {
         io.sockets.emit('chat-received', words);    
     });
     socket.on('setname', function(name){
-        username = name;
-        names.push(name);
-        io.sockets.emit('current-clients', names);
+        if(name.length < 15 && name.length != 0){
+            username = name;
+            names.push(name);
+            io.sockets.emit('current-clients', names);
+        }
+        
     });
     socket.on('disconnect', function(){
         names.splice(names.indexOf(username),1);

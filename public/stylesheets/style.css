@@ -46,12 +46,13 @@ html, body{
     font-family:ubuntu;
     height:100%;
     box-sizing:border-box;
-    overflow:auto;
+    overflow:hidden;
+    text-overflow:ellipsis;
     white-space: pre-wrap;      /* CSS3 */   
     white-space: -moz-pre-wrap; /* Firefox */    
     white-space: -pre-wrap;     /* Opera <7 */   
     white-space: -o-pre-wrap;   /* Opera 7 */    
-    word-wrap: break-word;      /* IE */   
+    /*word-wrap: break-word;       IE */   
     color:#b7d4e6;
 }
 
@@ -62,6 +63,7 @@ html, body{
     background-color: #164c6c;
 }
 .chat-text{
+    font-size:18px;
     color:#b7d4e6;
     padding: 10px 15px;
     font-family:ubuntu;

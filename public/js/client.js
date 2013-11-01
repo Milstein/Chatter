@@ -11,9 +11,9 @@ socket.on('chat-received', function(words){
     objDiv.scrollTop(objDiv[0].scrollHeight);
     
     
-    $('.clients').css('background-color', colors[(Math.floor(Math.random()*colors.length))]);
+    /*$('.clients').css('background-color', colors[(Math.floor(Math.random()*colors.length))]);
     $('.chat').css('background-color', colors[(Math.floor(Math.random()*colors.length))]);
-    $('.chat-input').css('background-color', colors[(Math.floor(Math.random()*colors.length))]);
+    $('.chat-input').css('background-color', colors[(Math.floor(Math.random()*colors.length))]);*/
     
 });
 
@@ -39,16 +39,41 @@ $(document).ready(function(){
     $('.chat-container').hide();
 });
 
+function validateChat(chat){
+    if(chat.length > 200){
+        return false;
+    }
+    return true;
+}
+
 function textEntered(e){
     e.preventDefault();
-    socket.emit('chat-sent', {what:$('#input').val()});
-    $('#input').val("");
+    var chat = $('#input').val();
+    if(chat.length ==0) return;
+    if(validateChat(chat)){
+        socket.emit('chat-sent', {what:chat});
+        $('#input').val("");
+    }
+    else{
+        var a = document.getElementById('chatter');
+        a.innerHTML = a.innerHTML.replace(/<br>/g, '\n');
+        a.textContent += 'All messages must be under 200 characters' + '\n';
+        a.innerHTML = a.innerHTML.replace(/\n/g, '<br>');
+    }
+    
 }
 
 function usernameSubmit(e){
     e.preventDefault();
-    socket.emit('setname', $('#username').val());
-    console.log($('#username').val());
-    $('.page').hide();
-    $('.chat-container').show();
+    var username = $('#username').val();
+    if(username.length ==0) return;
+    if(username.length < 15){
+        socket.emit('setname', username);
+        $('.page').hide();
+        $('.chat-container').show();
+    }
+    else{
+        alert('Username must be less than 15 characters');
+    }
+        
 }
