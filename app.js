@@ -29,25 +29,49 @@ var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 server.listen(80);
 
+function isSpaces(chat){
+    var counter = 0;
+    for(var x = 0; x< chat.length; x++){
+        if(chat[x] === ' ')
+            counter++;
+    }
+    if(counter == chat.length)
+        return true;
+    return false;
+}
+
 
 io.sockets.on('connection', function (socket) {
     var username = '';
+    var bootRequests = 0;
     socket.on('chat-sent', function(words){
         words.username = username;
         words.clients = names;
-        io.sockets.emit('chat-received', words);    
+        if(words.what.length <= 200 && words.what.length != 0 && !(isSpaces(words.what)))
+            io.sockets.emit('chat-received', words);
+        else if (words.what.length > 200 && words.what.length != 0 && !(isSpaces(words.what))){
+            words.what = words.what.substr(0,201);
+            io.sockets.emit('chat-received', words);
+        }
     });
     socket.on('setname', function(name){
-        if(name.length < 15 && name.length != 0){
+        if(name.length < 15 && name.length != 0 && !(isSpaces(name))){
             username = name;
             names.push(name);
             io.sockets.emit('current-clients', names);
         }
+        else if (name.length >= 15 && name.length != 0 && !(isSpaces(name)))
+            io.sockets.emit('current-clients', names.substr(0,15));
         
     });
     socket.on('disconnect', function(){
         names.splice(names.indexOf(username),1);
         io.sockets.emit('current-clients', names);
+    });
+    socket.on('boot', function(){
+        bootRequests++;
+        if(bootRequests >= 3)
+            socket.emit('boot-now');  
     });
 });
 

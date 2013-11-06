@@ -1,21 +1,21 @@
 doctype 5
 html
     head
-        title Test Javascript
+        title Chatter
         link(rel='stylesheet', href='stylesheets/bootstrap.css', type='text/css')
         link(rel='stylesheet', href='stylesheets/style.css', type='text/css')
     body
         .page
             .login-wrapper
                     center
-                        form(onsubmit='usernameSubmit(event)')
+                        form(class='username-submit')
                             input(type='text', class='login-input', id='username', placeholder='Enter Username')
                             input(type='submit', class='login-submit btn btn-inverse')
         
         .row-fluid.chat-container
             .clients-container.span4
                 .clients
-                    .clients-text(id='clientel')
+                    .clients-text
                         
             
             .chat-interface.span8
@@ -23,10 +23,10 @@ html
                     .chat-text(id='chatter')
                     
                 .chat-input
-                    form(class='input-form', onsubmit='textEntered(event)')
+                    form(class='input-form')
                         input(type='text', placeholder='Enter Text Here', class='input-text', id='input')
                         input(type='submit', class='btn btn-inverse input-submit')
-                        
+                            
         script(src='/socket.io/socket.io.js')
         script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
         script(src='/js/client.js')
