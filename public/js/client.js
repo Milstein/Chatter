@@ -1,5 +1,7 @@
 var socket = io.connect();
 
+global = null;
+
 socket.on('chat-received', function(words){
     var name = $('<span>');
         name.addClass('username-text');
@@ -17,6 +19,34 @@ socket.on('chat-received', function(words){
 });
 
 
+$('.chat-text')[0].addEventListener('drop', handleDrop);
+
+
+$('.chat-text').on(
+    'dragover',
+    function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+);
+$('.chat-text').on(
+    'dragenter',
+    function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+);
+
+function handleDrop(e) {
+  e.stopPropagation(); // Stops some browsers from redirecting.
+  e.preventDefault();
+  global = e;
+  var files = e.dataTransfer.files;
+  for (var i = 0, f; f = files[i]; i++) {
+    console.log(f);
+  }
+}
+
 socket.on('current-clients', function(clients){
     
     for(var x = 0; x < clients.length; x++){
@@ -30,16 +60,8 @@ socket.on('current-clients', function(clients){
             div.append(name);
             div.appendTo('.clients-text');
     }
-    $('.clients-link').on('click', function(){
-        console.log('one boot request emited');
-        socket.emit('boot');
-    });
 });
 
-socket.on('boot-now', function(){
-    $('chat-container').hide();
-    $('.page').show(); 
-});
     
 $(document).ready(function(){
     $('.chat-container').hide();
@@ -90,6 +112,9 @@ $('.username-submit').on('submit', function(e){
             socket.emit('setname', username);
             $('.page').hide();
             $('.chat-container').show();
+            /*$('.chat-text').on('drop', function(){
+                alert('I like apples'); 
+            });*/
         }
         else{
             alert('Please select a username');

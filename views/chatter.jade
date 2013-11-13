@@ -20,13 +20,13 @@ html
             
             .chat-interface.span8
                 .chat
-                    .chat-text(id='chatter')
+                    .chat-text#chatter
                     
                 .chat-input
                     form(class='input-form')
                         input(type='text', placeholder='Enter Text Here', class='input-text', id='input')
                         input(type='submit', class='btn btn-inverse input-submit')
-                            
+                        
         script(src='/socket.io/socket.io.js')
         script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
         script(src='/js/client.js')

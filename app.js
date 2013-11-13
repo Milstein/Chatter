@@ -40,10 +40,9 @@ function isSpaces(chat){
     return false;
 }
 
-
 io.sockets.on('connection', function (socket) {
     var username = '';
-    var bootRequests = 0;
+    
     socket.on('chat-sent', function(words){
         words.username = username;
         words.clients = names;
@@ -67,11 +66,6 @@ io.sockets.on('connection', function (socket) {
     socket.on('disconnect', function(){
         names.splice(names.indexOf(username),1);
         io.sockets.emit('current-clients', names);
-    });
-    socket.on('boot', function(){
-        bootRequests++;
-        if(bootRequests >= 3)
-            socket.emit('boot-now');  
     });
 });
 
