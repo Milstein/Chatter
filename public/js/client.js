@@ -43,7 +43,7 @@ function handleDrop(e) {
   global = e;
   var files = e.dataTransfer.files;
   for (var i = 0, f; f = files[i]; i++) {
-    console.log(f);
+    (f).appendTo(
   }
 }
 
