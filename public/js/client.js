@@ -1,17 +1,34 @@
 var socket = io.connect();
 
 global = null;
-
+last = '';
+encodedFile = null;
 socket.on('chat-received', function(words){
-    var name = $('<span>');
-        name.addClass('username-text');
-        name.text(words.username + '  '); 
-    var text = $('<span>');
-        text.text(words.what + '\n'); 
-    var div = $('<div>');
-        div.append(name);
-        div.append(text);
-        div.appendTo('.chat-text');
+    if(last != words.username){
+
+        var name = $('<span>');
+            name.addClass('username-text');
+            name.text(words.username + '  '); 
+        var text = $('<span>');
+            text.text(words.what + '\n'); 
+        var div = $('<div>');
+            div.append(name);
+            div.append(text);
+            div.appendTo('.chat-text');
+            last = words.username;
+    }
+    else{
+        //var spaces = (Array(words.username.length + 1)).join(' ');
+        var name = $('<span>');
+            name.addClass('username-text');
+            name.text('    '); 
+        var text = $('<span>');
+            text.text(words.what + '\n'); 
+        var div = $('<div>');
+            div.append(name);
+            div.append(text);
+            div.appendTo('.chat-text');
+    }
     
     var objDiv = $('.chat-text');
     objDiv.scrollTop(objDiv[0].scrollHeight); 
@@ -43,19 +60,16 @@ function handleDrop(e) {
   global = e;
   var files = e.dataTransfer.files;
   for (var i = 0, f; f = files[i]; i++) {
-    (f).appendTo(
+    encodedFile = btoa(f);
   }
 }
 
 socket.on('current-clients', function(clients){
-    
+    $('.clients-text').empty();
     for(var x = 0; x < clients.length; x++){
         var name = $('<span>');
             name.addClass('clients-link');
             name.text(clients[x] + '\n'); 
-        $('.clients-link').click( function(){
-            console.log('I like apples a lot');
-        });
         var div = $('<div>');
             div.append(name);
             div.appendTo('.clients-text');

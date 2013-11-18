@@ -65,6 +65,11 @@ io.sockets.on('connection', function (socket) {
     });
     socket.on('disconnect', function(){
         names.splice(names.indexOf(username),1);
+        console.log(names);
+        console.log(names);
+        console.log(names);
+        console.log(names);
+        console.log(names);
         io.sockets.emit('current-clients', names);
     });
 });
