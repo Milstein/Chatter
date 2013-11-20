@@ -42,7 +42,7 @@ function isSpaces(chat){
 
 io.sockets.on('connection', function (socket) {
     var username = '';
-    
+    io.set('log level', 1);
     socket.on('chat-sent', function(words){
         words.username = username;
         words.clients = names;
@@ -63,13 +63,11 @@ io.sockets.on('connection', function (socket) {
             io.sockets.emit('current-clients', names.substr(0,15));
         
     });
+    socket.on('picture-sent', function(base64Code){
+       io.sockets.emit('picture-received', base64Code);    
+    });
     socket.on('disconnect', function(){
         names.splice(names.indexOf(username),1);
-        console.log(names);
-        console.log(names);
-        console.log(names);
-        console.log(names);
-        console.log(names);
         io.sockets.emit('current-clients', names);
     });
 });

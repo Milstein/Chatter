@@ -1,8 +1,6 @@
 var socket = io.connect();
 
-global = null;
 last = '';
-encodedFile = null;
 socket.on('chat-received', function(words){
     if(last != words.username){
 
@@ -18,7 +16,6 @@ socket.on('chat-received', function(words){
             last = words.username;
     }
     else{
-        //var spaces = (Array(words.username.length + 1)).join(' ');
         var name = $('<span>');
             name.addClass('username-text');
             name.text('    '); 
@@ -57,10 +54,41 @@ $('.chat-text').on(
 function handleDrop(e) {
   e.stopPropagation(); // Stops some browsers from redirecting.
   e.preventDefault();
-  global = e;
   var files = e.dataTransfer.files;
   for (var i = 0, f; f = files[i]; i++) {
-    encodedFile = btoa(f);
+      var fileReader = new FileReader();
+
+		fileReader.onload = function(fileLoadedEvent) 
+		{
+            /*var img = new Image();
+            var ctx = canvas.getContext("2d");
+            var canvasCopy = document.createElement("canvas");
+            var copyContext = canvasCopy.getContext("2d");
+            
+            img.onload = function()
+            {
+                var ratio = 1;
+                
+                if(img.width > maxWidth)
+                ratio = maxWidth / img.width;
+                else if(img.height > maxHeight)
+                ratio = maxHeight / img.height;
+                
+                canvasCopy.width = img.width;
+                canvasCopy.height = img.height;
+                copyContext.drawImage(img, 0, 0);
+                
+                canvas.width = img.width * ratio;
+                canvas.height = img.height * ratio;
+                ctx.drawImage(canvasCopy, 0, 0, canvasCopy.width, canvasCopy.height, 0, 0, canvas.width, canvas.height);
+            };
+            
+            img.src = fileLoadedEvent.target.result;*/
+            var encodedFile = fileLoadedEvent.target.result;
+            socket.emit('picture-sent', encodedFile);
+		};
+
+      fileReader.readAsDataURL(f);
   }
 }
 
@@ -76,7 +104,11 @@ socket.on('current-clients', function(clients){
     }
 });
 
-    
+socket.on('picture-received', function(base64String){
+    picture = $('<img>');
+    picture.attr('src', base64String);
+    picture.appendTo('.chat-text');
+});
 $(document).ready(function(){
     $('.chat-container').hide();
 });
@@ -126,9 +158,6 @@ $('.username-submit').on('submit', function(e){
             socket.emit('setname', username);
             $('.page').hide();
             $('.chat-container').show();
-            /*$('.chat-text').on('drop', function(){
-                alert('I like apples'); 
-            });*/
         }
         else{
             alert('Please select a username');
