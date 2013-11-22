@@ -16,15 +16,10 @@ socket.on('chat-received', function(words){
             last = words.username;
     }
     else{
-        var name = $('<span>');
-            name.addClass('username-text');
-            name.text('    '); 
-        var text = $('<span>');
+        var text = $('<div>');
+            text.addClass('second-chat');
             text.text(words.what + '\n'); 
-        var div = $('<div>');
-            div.append(name);
-            div.append(text);
-            div.appendTo('.chat-text');
+            text.appendTo('.chat-text');
     }
     
     var objDiv = $('.chat-text');
@@ -95,11 +90,10 @@ function handleDrop(e) {
 socket.on('current-clients', function(clients){
     $('.clients-text').empty();
     for(var x = 0; x < clients.length; x++){
-        var name = $('<span>');
-            name.addClass('clients-link');
-            name.text(clients[x] + '\n'); 
         var div = $('<div>');
-            div.append(name);
+            div.addClass('individual-client');
+            div.attr('title', clients[x]);
+            div.text(clients[x] + '\n');
             div.appendTo('.clients-text');
     }
 });

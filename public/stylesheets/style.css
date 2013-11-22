@@ -11,8 +11,8 @@ html, body{
     top:50%;
     background-color:#164c6c;
     width: 100%;
-    height: 200x;
-    margin-top:-100px;
+    height: 100px;
+    margin-top:-75px;
     /*box-shadow:10px 10px 5px #888888;*/
 }
 .login-input{
@@ -53,7 +53,6 @@ html, body{
     height:100%;
     box-sizing:border-box;
     overflow:hidden;
-    text-overflow:ellipsis;
     white-space: pre-wrap;      /* CSS3 */   
     white-space: -moz-pre-wrap; /* Firefox */    
     white-space: -pre-wrap;     /* Opera <7 */   
@@ -61,8 +60,11 @@ html, body{
     /*word-wrap: break-word;       IE */   
     color:#b7d4e6;
 }
-.clients-link{
-    text-decoration:none;
+.individual-client{
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+    height:45px;
 }
 .clients-link:hover{
     text-decoration:none;   
@@ -97,6 +99,10 @@ html, body{
     font-family: ubuntu;
     color: black;
     text-decoration:none;
+}
+
+.second-chat{
+    margin-left: 15px;
 }
 .chat-interface{
     padding: 1%;
