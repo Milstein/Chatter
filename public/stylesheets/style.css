@@ -37,6 +37,13 @@ html, body{
     height:100%;
     background-color:#7ABEE6; 
 }
+
+@font-face{
+		font-family: ubuntu;
+		font-style: normal;
+		src: url('../fonts/ubuntu/Ubuntu-B.ttf');		
+}
+
 .clients-text{
     line-height:1;
     padding: 10px 15px;
