@@ -64,7 +64,8 @@ io.sockets.on('connection', function (socket) {
         
     });
     socket.on('picture-sent', function(base64Code){
-       io.sockets.emit('picture-received', base64Code);    
+        var picture_chat = {'picture':base64Code, 'username':username};
+        io.sockets.emit('picture-received', picture_chat);    
     });
     socket.on('disconnect', function(){
         names.splice(names.indexOf(username),1);

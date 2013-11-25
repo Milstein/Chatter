@@ -98,10 +98,37 @@ socket.on('current-clients', function(clients){
     }
 });
 
-socket.on('picture-received', function(base64String){
-    picture = $('<img>');
-    picture.attr('src', base64String);
-    picture.appendTo('.chat-text');
+socket.on('picture-received', function(chat){
+    if(last != chat.username){
+
+        var name = $('<span>');
+            name.addClass('username-text');
+            name.text(chat.username + '\n');
+        var picture = $('<img>');
+            picture.css('margin-top', '3px');
+            picture.css('margin-bottom', '3px');
+            picture.attr('src', chat.picture);
+        var div = $('<div>');
+            div.append(name);
+            div.append(picture);
+            div.appendTo('.chat-text');
+            last = chat.username;
+    }
+    else{
+        
+            //text.addClass('second-chat');
+        var picture = $('<img>');
+            picture.css('margin-top', '3px');
+            picture.css('margin-bottom', '3px');
+            picture.attr('src', chat.picture);
+        var chat = $('<div>');
+            chat.append(picture); 
+            chat.appendTo('.chat-text');
+    }
+    
+    var objDiv = $('.chat-text');
+    objDiv.scrollTop(objDiv[0].scrollHeight); 
+    
 });
 $(document).ready(function(){
     $('.chat-container').hide();
