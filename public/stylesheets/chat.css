@@ -1,0 +1,44 @@
+.chat-container{
+    height:100%;
+    display:none;
+}
+.chat-interface{
+    padding: 1%;
+    height: 100%;
+    box-sizing:border-box;    
+}
+.chat{
+    border-radius:3px;
+    height: calc(100% - 44px);
+    margin-bottom: 1%;
+    background-color: #164c6c;
+}
+.chat-text{
+    font-size:18px;
+    color:#b7d4e6;
+    padding: 10px 15px;
+    font-family:ubuntu;
+    height:100%;
+    box-sizing:border-box;
+    overflow:auto;
+    white-space: pre-wrap;      /* CSS3 */   
+    white-space: -moz-pre-wrap; /* Firefox */    
+    white-space: -pre-wrap;     /* Opera <7 */   
+    white-space: -o-pre-wrap;   /* Opera 7 */    
+    word-wrap: break-word;      /* IE */
+}
+.username-text{
+    font-weight: bold;
+    font-family: ubuntu;
+    color: black;
+}
+.username-text:hover{
+    font-weight: bold;
+    font-family: ubuntu;
+    color: black;
+    text-decoration:none;
+}
+
+.second-chat{
+    margin-left: 15px;
+}

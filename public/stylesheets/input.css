@@ -1,0 +1,16 @@
+.chat-input{
+    background-color:#7ABEE6;
+    height:40px;
+    border-radius:4px;
+    
+}
+.input-text{
+    margin-top:5px;
+    margin-left:5px;
+    width: calc(100% - 98px);
+}
+.input-submit{
+    margin-top:5px;
+    margin-left:3px;
+    position:absolute;
+}
