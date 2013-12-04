@@ -9,9 +9,10 @@ html
         link(rel='stylesheet', href='stylesheets/login.css', type='text/css')
         link(rel='stylesheet', href='stylesheets/clients.css', type='text/css')
         link(rel='stylesheet', href='stylesheets/logo.css', type='text/css')
-        link(href='http://fonts.googleapis.com/css?family=Allan', rel='stylesheet', type='text/css')
+        link(href='http://fonts.googleapis.com/css?family=Mrs+Sheppards', rel='stylesheet', type='text/css')
     body
         .page
+            span(class='logo') Chatter
             .login-wrapper
                     center
                         form(class='username-submit')
@@ -22,14 +23,15 @@ html
             .clients-container.span4
                 .clients
                     .clients-text
-                .logo-container
-                    .logo CHATTER
+
                         
             
             .chat-interface.span8
+                
                 .chat
+                    .drag-over
+                        span(class="drag-text") Drop Picture Here
                     .chat-text#chatter
-                    
                 .chat-input
                     form(class='input-form')
                         input(type='text', placeholder='Enter Text Here', class='input-text', id='input')

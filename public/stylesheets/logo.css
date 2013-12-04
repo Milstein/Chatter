@@ -2,19 +2,14 @@
     /*top:50%;
     margin-top:-20px;
     */
-    font-weight: bold;
-    color: #164c6c;
-}
-.logo-container{
-    margin-top:2%;
-    background-color:red;
-    border-radius:4px;
-    
-    font-weight: bold;
-    font-size:40px;
-    color: #164c6c;
-    text-align:center;
-
-    height:20%;
-    
+    font-family:'Mrs Sheppards', cursive;
+    line-height:normal;
+    color: white;
+    opacity:.5;
+    font-size:190px;
+    position:absolute;
+    top:6%;
+    left:50%;
+    padding:2%;
+    margin-left:-290px;
 }

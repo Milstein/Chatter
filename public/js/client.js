@@ -29,13 +29,16 @@ socket.on('chat-received', function(words){
 
 
 $('.chat-text')[0].addEventListener('drop', handleDrop);
-
+$('.drag-over')[0].addEventListener('dragleave', function(){
+    $('.drag-over').hide();
+});
 
 $('.chat-text').on(
     'dragover',
     function(e) {
         e.preventDefault();
         e.stopPropagation();
+        $('.drag-over').show();
     }
 );
 $('.chat-text').on(
@@ -43,8 +46,11 @@ $('.chat-text').on(
     function(e) {
         e.preventDefault();
         e.stopPropagation();
+        $('.drag-over').show();
     }
 );
+
+
 
 function handleDrop(e) {
   e.stopPropagation(); // Stops some browsers from redirecting.
@@ -55,36 +61,13 @@ function handleDrop(e) {
 
 		fileReader.onload = function(fileLoadedEvent) 
 		{
-            /*var img = new Image();
-            var ctx = canvas.getContext("2d");
-            var canvasCopy = document.createElement("canvas");
-            var copyContext = canvasCopy.getContext("2d");
-            
-            img.onload = function()
-            {
-                var ratio = 1;
-                
-                if(img.width > maxWidth)
-                ratio = maxWidth / img.width;
-                else if(img.height > maxHeight)
-                ratio = maxHeight / img.height;
-                
-                canvasCopy.width = img.width;
-                canvasCopy.height = img.height;
-                copyContext.drawImage(img, 0, 0);
-                
-                canvas.width = img.width * ratio;
-                canvas.height = img.height * ratio;
-                ctx.drawImage(canvasCopy, 0, 0, canvasCopy.width, canvasCopy.height, 0, 0, canvas.width, canvas.height);
-            };
-            
-            img.src = fileLoadedEvent.target.result;*/
             var encodedFile = fileLoadedEvent.target.result;
             socket.emit('picture-sent', encodedFile);
 		};
 
       fileReader.readAsDataURL(f);
   }
+    $('.drag-over').hide();
 }
 
 socket.on('current-clients', function(clients){
