@@ -29,7 +29,7 @@ socket.on('chat-received', function(words){
 
 
 $('.chat-text')[0].addEventListener('drop', handleDrop);
-$('.drag-over')[0].addEventListener('dragleave', function(){
+$('.chat-text')[0].addEventListener('dragleave', function(){
     $('.drag-over').hide();
 });
 

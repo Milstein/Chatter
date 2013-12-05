@@ -1,0 +1,44 @@
+doctype 5
+html
+    head
+        title Chatter
+        link(rel='stylesheet', href='stylesheets/bootstrap.css', type='text/css')
+        link(rel='stylesheet', href='stylesheets/general.css', type='text/css')
+        link(rel='stylesheet', href='stylesheets/input.css', type='text/css')
+        link(rel='stylesheet', href='stylesheets/chat.css', type='text/css')
+        link(rel='stylesheet', href='stylesheets/login.css', type='text/css')
+        link(rel='stylesheet', href='stylesheets/clients.css', type='text/css')
+        link(rel='stylesheet', href='stylesheets/logo.css', type='text/css')
+        link(href='http://fonts.googleapis.com/css?family=Mrs+Sheppards', rel='stylesheet', type='text/css')
+    body
+        .page
+            span(class='logo') Chatter
+            .login-wrapper
+                .login-form
+                    form(class='username-submit')
+                        input(type='text', class='login-input float', id='username', placeholder='Enter Username')
+                        .button
+                            span(class='button-text username-submit') Submit
+        
+        .row-fluid.chat-container
+            .clients-container.span4
+                .clients
+                    .clients-text
+
+                        
+            
+            .chat-interface.span8
+                
+                .chat
+                    .drag-over
+                        span(class="drag-text") Drop Picture Here
+                    .chat-text#chatter
+                .chat-input
+                    form(class='input-form')
+                        input(type='text', placeholder='Enter Text Here', class='input-text', id='input')
+                        .button.input-submit
+                            span(class='button-text') Enter
+                        
+        script(src='/socket.io/socket.io.js')
+        script(src='http://code.jquery.com/jquery-1.9.1.js')
+        script(src='/js/client.js')

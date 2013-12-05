@@ -27,7 +27,7 @@ app.get('/', function(req,res){
 
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
-server.listen(80);
+server.listen(3000);
 
 function isSpaces(chat){
     var counter = 0;
